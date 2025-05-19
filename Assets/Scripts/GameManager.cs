@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null) {
+        if (Instance != null)
+        {
             DestroyImmediate(gameObject);
-        } else {
+        }
+        else
+        {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -23,7 +26,8 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Instance == this) {
+        if (Instance == this)
+        {
             Instance = null;
         }
     }
@@ -51,7 +55,7 @@ public class GameManager : MonoBehaviour
     {
         this.world = world;
         this.stage = stage;
-
+        AudioManager.Instance.PlaySound("Background");
         SceneManager.LoadScene($"{world}-{stage}");
     }
 
@@ -64,15 +68,20 @@ public class GameManager : MonoBehaviour
     {
         CancelInvoke(nameof(ResetLevel));
         Invoke(nameof(ResetLevel), delay);
+        AudioManager.Instance.PlaySound("Background");
     }
 
     public void ResetLevel()
     {
         lives--;
 
-        if (lives > 0) {
+        if (lives > 0)
+        {
+            AudioManager.Instance.PlaySound("Background");
             LoadLevel(world, stage);
-        } else {
+        }
+        else
+        {
             GameOver();
         }
     }

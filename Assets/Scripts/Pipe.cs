@@ -46,7 +46,8 @@ public class Pipe : MonoBehaviour
     }
 
     private IEnumerator Move(Transform player, Vector3 endPosition, Vector3 endScale)
-    {
+    {  
+         AudioManager.Instance.PlaySound("Pipe", transform.position);
         float elapsed = 0f;
         float duration = 1f;
 

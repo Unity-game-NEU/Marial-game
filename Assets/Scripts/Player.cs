@@ -27,9 +27,12 @@ public class Player : MonoBehaviour
     {
         if (!dead && !starpower)
         {
-            if (big) {
+            if (big)
+            {
                 Shrink();
-            } else {
+            }
+            else
+            {
                 Death();
             }
         }
@@ -40,8 +43,9 @@ public class Player : MonoBehaviour
         smallRenderer.enabled = false;
         bigRenderer.enabled = false;
         deathAnimation.enabled = true;
-
-        GameManager.Instance.ResetLevel(3f);
+        AudioManager.Instance.PlaySound("Death", transform.position);
+        AudioManager.Instance.StopAllLoopingSounds();
+        StartCoroutine(DelayedReset(3f));
     }
 
     public void Grow()
@@ -52,7 +56,6 @@ public class Player : MonoBehaviour
 
         capsuleCollider.size = new Vector2(1f, 2f);
         capsuleCollider.offset = new Vector2(0f, 0.5f);
-
         StartCoroutine(ScaleAnimation());
     }
 
@@ -64,6 +67,8 @@ public class Player : MonoBehaviour
 
         capsuleCollider.size = new Vector2(1f, 1f);
         capsuleCollider.offset = new Vector2(0f, 0f);
+        AudioManager.Instance.PlaySound("Pipe", transform.position);
+
 
         StartCoroutine(ScaleAnimation());
     }
@@ -107,7 +112,8 @@ public class Player : MonoBehaviour
         {
             elapsed += Time.deltaTime;
 
-            if (Time.frameCount % 4 == 0) {
+            if (Time.frameCount % 4 == 0)
+            {
                 activeRenderer.spriteRenderer.color = Random.ColorHSV(0f, 1f, 1f, 1f, 1f, 1f);
             }
 
@@ -116,6 +122,14 @@ public class Player : MonoBehaviour
 
         activeRenderer.spriteRenderer.color = Color.white;
         starpower = false;
+    }
+    private IEnumerator DelayedReset(float delay)
+    {
+        // 等待指定的秒数
+        yield return new WaitForSeconds(delay);
+
+        // 等待结束后执行重置
+        GameManager.Instance.ResetLevel(0f);
     }
 
 }

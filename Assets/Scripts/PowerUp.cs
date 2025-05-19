@@ -24,14 +24,17 @@ public class PowerUp : MonoBehaviour
         switch (type)
         {
             case Type.Coin:
+                AudioManager.Instance.PlaySound("Coin", transform.position);
                 GameManager.Instance.AddCoin();
                 break;
 
             case Type.ExtraLife:
+                AudioManager.Instance.PlaySound("1Up", transform.position);
                 GameManager.Instance.AddLife();
                 break;
 
             case Type.MagicMushroom:
+                AudioManager.Instance.PlaySound("Big", transform.position);
                 player.Grow();
                 break;
 

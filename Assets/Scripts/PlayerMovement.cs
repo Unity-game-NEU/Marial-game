@@ -1,6 +1,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+
+
+
 public class PlayerMovement : MonoBehaviour
 {
     private Camera mainCamera;
@@ -52,7 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
         grounded = rb.Raycast(Vector2.down);
 
-        if (grounded) {
+        if (grounded)
+        {
             GroundedMovement();
         }
 
@@ -80,14 +84,18 @@ public class PlayerMovement : MonoBehaviour
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
 
         // Check if running into a wall
-        if (rb.Raycast(Vector2.right * velocity.x)) {
+        if (rb.Raycast(Vector2.right * velocity.x))
+        {
             velocity.x = 0f;
         }
 
         // Flip sprite to face direction
-        if (velocity.x > 0f) {
+        if (velocity.x > 0f)
+        {
             transform.eulerAngles = Vector3.zero;
-        } else if (velocity.x < 0f) {
+        }
+        else if (velocity.x < 0f)
+        {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
     }
@@ -103,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = jumpForce;
             jumping = true;
+            AudioManager.Instance.PlaySound("Jump", transform.position);
         }
     }
 
@@ -131,7 +140,8 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.gameObject.layer != LayerMask.NameToLayer("PowerUp"))
         {
             // Stop vertical movement if mario bonks his head
-            if (transform.DotTest(collision.transform, Vector2.up)) {
+            if (transform.DotTest(collision.transform, Vector2.up))
+            {
                 velocity.y = 0f;
             }
         }

@@ -20,7 +20,9 @@ public class FlagPole : MonoBehaviour
     }
 
     private IEnumerator LevelCompleteSequence(Player player)
-    {
+    {  
+         AudioManager.Instance.StopAllLoopingSounds();
+        AudioManager.Instance.PlaySound("Success", transform.position);
         player.movement.enabled = false;
 
         yield return MoveTo(player.transform, poleBottom.position);
@@ -30,13 +32,14 @@ public class FlagPole : MonoBehaviour
 
         player.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(6f);
 
         GameManager.Instance.LoadLevel(nextWorld, nextStage);
     }
 
     private IEnumerator MoveTo(Transform subject, Vector3 position)
     {
+       
         while (Vector3.Distance(subject.position, position) > 0.125f)
         {
             subject.position = Vector3.MoveTowards(subject.position, position, speed * Time.deltaTime);
