@@ -1,38 +1,77 @@
 // LevelSelectManager.cs
 using UnityEngine;
-using UnityEngine.SceneManagement;
+// using UnityEngine.SceneManagement; // 如果你之前有用到
 
 public class LevelSelectManager : MonoBehaviour
 {
-    [Header("Scene Navigation")]
-    public string mainMenuSceneName = "MainMenuScene"; // 你的主菜单场景文件名
+    public string mainMenuSceneName = "MainMenuScene";
 
-    // 公共方法，用于被关卡按钮调用
-    // 参数 'levelSceneName' 将是你要加载的实际游戏关卡的场景文件名
-    public void LoadLevel(string levelSceneName)
+    public void SelectLevel1_1()
     {
-        if (!string.IsNullOrEmpty(levelSceneName))
+        if (GameManager.Instance != null)
         {
-            Debug.Log("加载关卡: " + levelSceneName);
-            SceneManager.LoadScene(levelSceneName);
+            // 使用新的公共方法来设置 lives 和 coins
+            // GameManager.Instance.SetLives(3);
+            // GameManager.Instance.SetCoins(0);
+            // 或者调用综合方法：
+            GameManager.Instance.ResetPlayerStatsForLevelSelect();
+
+            GameManager.Instance.LoadLevel(1, 1);
         }
         else
         {
-            Debug.LogError("要加载的关卡场景名称为空!");
+            Debug.LogError("GameManager.Instance is not found!");
         }
     }
 
-    // 返回主菜单的方法
+    public void SelectLevel1_2()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetPlayerStatsForLevelSelect();
+            GameManager.Instance.LoadLevel(1, 2);
+        }
+        else
+        {
+            Debug.LogError("GameManager.Instance is not found!");
+        }
+    }
+
+    public void SelectLevel2_1()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetPlayerStatsForLevelSelect();
+            GameManager.Instance.LoadLevel(2, 1);
+        }
+        else
+        {
+            Debug.LogError("GameManager.Instance is not found!");
+        }
+    }
+
+    public void SelectLevel2_2()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetPlayerStatsForLevelSelect();
+            GameManager.Instance.LoadLevel(2, 2);
+        }
+        else
+        {
+            Debug.LogError("GameManager.Instance is not found!");
+        }
+    }
+
     public void BackToMainMenu()
     {
         if (!string.IsNullOrEmpty(mainMenuSceneName))
         {
-            Debug.Log("返回主菜单: " + mainMenuSceneName);
-            SceneManager.LoadScene(mainMenuSceneName);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuSceneName);
         }
         else
         {
-            Debug.LogError("主菜单场景名称 (mainMenuSceneName) 未在 LevelSelectManager 中设置!");
+            Debug.LogError("MainMenuSceneName is not set in LevelSelectManager!");
         }
     }
 }
