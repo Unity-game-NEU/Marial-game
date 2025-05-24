@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
+
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -10,6 +12,10 @@ public class GameManager : MonoBehaviour
     public int stage { get; private set; } = 1;
     public int lives { get; private set; } = 3;
     public int coins { get; private set; } = 0;
+
+    [Header("Scene Navigation")] // 你可能已经有这个 Header 了
+    public string levelSelectSceneName = "LevelSelectScene"; // 确保这个名字正确
+    public string mainMenuSceneName = "MainMenuScene";       // 也可以在这里统一管理主菜单场景名
 
     private void Awake()
     {
@@ -31,7 +37,7 @@ public class GameManager : MonoBehaviour
             Instance = null;
         }
     }
- 
+  
     public void SetLives(int newLives)
     {
         lives = newLives;
@@ -50,8 +56,9 @@ public class GameManager : MonoBehaviour
         SetCoins(0);
     }
 
+  
 
-    // ... (你已有的其他方法，如 NewGame, LoadLevel 等) ...
+
     private void Start()
     {
         Application.targetFrameRate = 60;
