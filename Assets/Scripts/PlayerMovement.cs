@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 8f;
     public float maxJumpHeight = 5f;
     public float maxJumpTime = 1f;
+    [Header("滑动设置")]
+    public float slideAccelerationMultiplier = 2.5f; // 滑动时的加速度倍增器
     public float jumpForce => (2f * maxJumpHeight) / (maxJumpTime / 2f);
     public float gravity => (-2f * maxJumpHeight) / Mathf.Pow(maxJumpTime / 2f, 2f);
 
@@ -79,17 +81,29 @@ public class PlayerMovement : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        // Accelerate / decelerate
+        // 获取输入
         inputAxis = Input.GetAxis("Horizontal");
-        velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
 
-        // Check if running into a wall
+        // 判断是否处于滑动状态（方向切换）
+        bool isSliding = (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
+
+        // 应用加速度，滑动时使用更高的加速率
+        float currentAcceleration = moveSpeed;
+        if (isSliding)
+        {
+            currentAcceleration *= slideAccelerationMultiplier; // 滑动时加速更快
+        }
+
+        // 加速/减速
+        velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, currentAcceleration * Time.deltaTime);
+
+        // 检查是否撞墙
         if (rb.Raycast(Vector2.right * velocity.x))
         {
             velocity.x = 0f;
         }
 
-        // Flip sprite to face direction
+        // 翻转角色面向
         if (velocity.x > 0f)
         {
             transform.eulerAngles = Vector3.zero;
@@ -99,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
     }
-
     private void GroundedMovement()
     {
         // Prevent gravity from infinitly building up

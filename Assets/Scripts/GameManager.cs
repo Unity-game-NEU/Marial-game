@@ -13,15 +13,15 @@ public class GameManager : MonoBehaviour
     public int lives { get; private set; } = 3;
     public int coins { get; private set; } = 0;
 
-    [Header("Scene Navigation")] // Äã¿ÉÄÜÒÑ¾­ÓĞÕâ¸ö Header ÁË
-    public string levelSelectSceneName = "LevelSelectScene"; // È·±£Õâ¸öÃû×ÖÕıÈ·
-    public string mainMenuSceneName = "MainMenuScene";       // Ò²¿ÉÒÔÔÚÕâÀïÍ³Ò»¹ÜÀíÖ÷²Ëµ¥³¡¾°Ãû
+    [Header("Scene Navigation")] // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Header ï¿½ï¿½
+    public string levelSelectSceneName = "LevelSelectScene"; // È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·
+    public string mainMenuSceneName = "MainMenuScene";       // Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) // È·±£ Instance != this ÒÔ·ÀÖØ¸´Ïú»Ù×ÔÉí
+        if (Instance != null && Instance != this) // È·ï¿½ï¿½ Instance != this ï¿½Ô·ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            DestroyImmediate(gameObject); // Èç¹ûÒÑ´æÔÚÒ»¸ö²»Í¬µÄÊµÀı£¬Ïú»Ùµ±Ç°Õâ¸ö
+            DestroyImmediate(gameObject); // ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½Ç°ï¿½ï¿½ï¿½
         }
         else
         {
@@ -37,49 +37,49 @@ public class GameManager : MonoBehaviour
             Instance = null;
         }
     }
-  
+
     public void SetLives(int newLives)
     {
         lives = newLives;
-        Debug.Log($"Lives set to: {lives}"); // ¿ÉÑ¡µÄµ÷ÊÔÈÕÖ¾
+        Debug.Log($"Lives set to: {lives}"); // ï¿½ï¿½Ñ¡ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
     }
 
     public void SetCoins(int newCoins)
     {
         coins = newCoins;
-        Debug.Log($"Coins set to: {coins}"); // ¿ÉÑ¡µÄµ÷ÊÔÈÕÖ¾
+        Debug.Log($"Coins set to: {coins}"); // ï¿½ï¿½Ñ¡ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
     }
 
-    public void ResetPlayerStatsForLevelSelect() // Ò»¸ö×ÛºÏµÄ·½·¨£¬ÓÃÓÚ´Ó¹Ø¿¨Ñ¡Ôñ½øÈëÊ±ÖØÖÃ
+    public void ResetPlayerStatsForLevelSelect() // Ò»ï¿½ï¿½ï¿½ÛºÏµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´Ó¹Ø¿ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
     {
-        SetLives(3); // »òÕßÄãÏ£ÍûµÄÄ¬ÈÏÉúÃüÖµ
+        SetLives(3); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
         SetCoins(0);
     }
 
-  
+
 
 
     private void Start()
     {
         Application.targetFrameRate = 60;
-        // NewGame(); // <--- ´ÓÕâÀïÒÆ³ı NewGame() µÄ×Ô¶¯µ÷ÓÃ
-        // NewGame() Ó¦¸ÃÓÉÖ÷²Ëµ¥µÄ "ĞÂÓÎÏ·" °´Å¥»òÌØ¶¨Âß¼­´¥·¢
+        // NewGame(); // <--- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ³ï¿½ NewGame() ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
+        // NewGame() Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½Ï·" ï¿½ï¿½Å¥ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
-    public void NewGame() // µ±Íæ¼ÒÑ¡Ôñ¡°ĞÂÓÎÏ·¡±Ê±µ÷ÓÃ´Ë·½·¨
+    public void NewGame() // ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã´Ë·ï¿½ï¿½ï¿½
     {
         lives = 3;
         coins = 0;
-        // ĞÂÓÎÏ·Ä¬ÈÏ´Ó 1-1 ¿ªÊ¼
+        // ï¿½ï¿½ï¿½ï¿½Ï·Ä¬ï¿½Ï´ï¿½ 1-1 ï¿½ï¿½Ê¼
         LoadLevel(1, 1);
     }
 
     public void GameOver()
     {
-        // Äã¿ÉÄÜÏëÔÚÕâÀïµ¼º½µ½ Game Over ÆÁÄ»£¬¶ø²»ÊÇÖ±½Ó NewGame()
-        // ÀıÈç: SceneManager.LoadScene("GameOverScreen");
-        // ÎªÁË±£³ÖÔ­Âß¼­£¬ÔİÊ±»¹µ÷ÓÃ NewGame()
-        Debug.Log("Game Over! Restarting a new game."); // Ôö¼ÓÈÕÖ¾·½±ãµ÷ÊÔ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ïµ¼ï¿½ï¿½ï¿½ï¿½ Game Over ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ NewGame()
+        // ï¿½ï¿½ï¿½ï¿½: SceneManager.LoadScene("GameOverScreen");
+        // Îªï¿½Ë±ï¿½ï¿½ï¿½Ô­ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NewGame()
+        Debug.Log("Game Over! Restarting a new game."); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         NewGame();
     }
 
@@ -88,45 +88,52 @@ public class GameManager : MonoBehaviour
         this.world = world;
         this.stage = stage;
 
-        Debug.Log($"Loading Level: {world}-{stage}"); // Ôö¼ÓÈÕÖ¾·½±ãµ÷ÊÔ
+        Debug.Log($"Loading Level: {world}-{stage}"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-        // ²¥·Å±³¾°ÒôÀÖµÄÂß¼­¿ÉÒÔ±£Áô£¬µ«ÇëÈ·±£AudioManager´æÔÚÇÒÅäÖÃÕıÈ·
+        // ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½AudioManagerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlaySound("Background"); // È·±£ "Background" ÒôĞ§ÃûÕıÈ·
+            AudioManager.Instance.PlaySound("Background"); // È·ï¿½ï¿½ "Background" ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½È·
         }
         else
         {
             Debug.LogWarning("AudioManager.Instance is null. Cannot play background sound.");
         }
+        if (world != 3)
+        { SceneManager.LoadScene($"{world}-{stage}"); }// È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª "1-1", "1-2", "2-1", "2-2"
+        else
+        {
+            SceneManager.LoadScene("MainMenuScene");
+            AudioManager.Instance.StopAllLoopingSounds();
 
-        SceneManager.LoadScene($"{world}-{stage}"); // È·±£³¡¾°ÃüÃûÎª "1-1", "1-2", "2-1", "2-2"
+         }
+
     }
 
     public void NextLevel()
     {
-        // ÕâÀïĞèÒª¸üÍêÉÆµÄÂß¼­À´´¦ÀíÊÀ½çÇĞ»»ºÍÓÎÏ·½áÊø
-        // ÀıÈç: if (stage == 2 && world == 1) LoadLevel(2,1); else if ...
-        // ÔİÊ±±£³ÖÔ­Ñù£¬ËüÖ»»áÔö¼Óµ±Ç°ÊÀ½çµÄ stage
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½: if (stage == 2 && world == 1) LoadLevel(2,1); else if ...
+        // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ stage
         LoadLevel(world, stage + 1);
     }
 
     public void ResetLevel(float delay)
     {
-        CancelInvoke(nameof(ResetLevelInternal)); // ĞŞ¸ÄÎªµ÷ÓÃ ResetLevelInternal
-        Invoke(nameof(ResetLevelInternal), delay); // ĞŞ¸ÄÎªµ÷ÓÃ ResetLevelInternal
-        // AudioManager.Instance.PlaySound("Background"); // ¿¼ÂÇÊÇ·ñÔÚÕâÀïÖØ¸´²¥·Å£¬LoadLevelÀïÒÑÓĞ
+        CancelInvoke(nameof(ResetLevelInternal)); // ï¿½Ş¸ï¿½Îªï¿½ï¿½ï¿½ï¿½ ResetLevelInternal
+        Invoke(nameof(ResetLevelInternal), delay); // ï¿½Ş¸ï¿½Îªï¿½ï¿½ï¿½ï¿½ ResetLevelInternal
+        // AudioManager.Instance.PlaySound("Background"); // ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½Å£ï¿½LoadLevelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
-    // ½«Ô­À´µÄ ResetLevel() ÖØÃüÃûÎª ResetLevelInternal() »òÆäËû£¬ÒÔ±ÜÃâÓë Invoke µÄ·½·¨Ãû³åÍ»»ò»ìÏı
+    // ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ ResetLevel() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª ResetLevelInternal() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ Invoke ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½
     private void ResetLevelInternal()
     {
         lives--;
-        Debug.Log($"Lives remaining: {lives}"); // Ôö¼ÓÈÕÖ¾
+        Debug.Log($"Lives remaining: {lives}"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
 
         if (lives > 0)
         {
-            // AudioManager.Instance.PlaySound("Background"); // LoadLevelÖĞ»á²¥·Å
+            // AudioManager.Instance.PlaySound("Background"); // LoadLevelï¿½Ğ»á²¥ï¿½ï¿½
             LoadLevel(world, stage);
         }
         else
@@ -135,7 +142,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Èç¹ûÍâ²¿ÈÔĞèÒªÒ»¸öÎŞÑÓ³ÙµÄ ResetLevel£¬¿ÉÒÔ±£ÁôÕâ¸ö£¬µ«Ëü»áÖ±½Ó¼õÉúÃü²¢¼ÓÔØ
+    // ï¿½ï¿½ï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½ÒªÒ»ï¿½ï¿½ï¿½ï¿½ï¿½Ó³Ùµï¿½ ResetLevelï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void ResetLevel()
     {
         ResetLevelInternal();
@@ -145,9 +152,9 @@ public class GameManager : MonoBehaviour
     public void AddCoin()
     {
         coins++;
-        // Debug.Log($"Coins: {coins}"); // ¿ÉÑ¡µÄµ÷ÊÔÈÕÖ¾
+        // Debug.Log($"Coins: {coins}"); // ï¿½ï¿½Ñ¡ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
 
-        if (coins >= 100) // Í¨³£ÊÇ >= 100
+        if (coins >= 100) // Í¨ï¿½ï¿½ï¿½ï¿½ >= 100
         {
             coins = 0;
             AddLife();
@@ -157,6 +164,6 @@ public class GameManager : MonoBehaviour
     public void AddLife()
     {
         lives++;
-        // Debug.Log($"Lives: {lives}"); // ¿ÉÑ¡µÄµ÷ÊÔÈÕÖ¾
+        // Debug.Log($"Lives: {lives}"); // ï¿½ï¿½Ñ¡ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
     }
 }

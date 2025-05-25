@@ -4,23 +4,23 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class SideScrollingCamera : MonoBehaviour
 {
-    public Transform trackedObject; // Íæ¼Ò»òÆäËûĞèÒª±»×·×ÙµÄ¶ÔÏó
+    public Transform trackedObject; // ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½×·ï¿½ÙµÄ¶ï¿½ï¿½ï¿½
 
     [Header("Camera Positioning")]
-    public float yOffset = 2f;         // Ïà»úÔÚ´¹Ö±·½ÏòÉÏÏà¶ÔÓÚ×·×Ù¶ÔÏóµÄÆ«ÒÆÁ¿
-    public float xLookAhead = 2f;      // £¨¿ÉÑ¡£©Ïà»úÔÚË®Æ½·½ÏòÉÏ¿´ÏòÍæ¼ÒÇ°½ø·½ÏòµÄ¾àÀë
-    public float yLookAhead = 1f;      // £¨¿ÉÑ¡£©Ïà»úÔÚ´¹Ö±·½ÏòÉÏ¿´ÏòÍæ¼ÒÌøÔ¾/ÏÂÂä·½ÏòµÄ¾àÀë
+    public float yOffset = 2f;         // ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×·ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½ï¿½ï¿½
+    public float xLookAhead = 2f;      // ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë®Æ½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
+    public float yLookAhead = 1f;      // ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¾/ï¿½ï¿½ï¿½ä·½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
 
     [Header("Fixed Y Levels (for SetUnderground)")]
-    public float normalLevelY = 6.5f;      // µ± SetUnderground(false) Ê±£¬Ïà»úYÖáµÄ¹Ì¶¨¸ß¶È
-    public float undergroundLevelY = -9.5f;  // µ± SetUnderground(true) Ê±£¬Ïà»úYÖáµÄ¹Ì¶¨¸ß¶È
+    public float normalLevelY = 6.5f;      // ï¿½ï¿½ SetUnderground(false) Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Yï¿½ï¿½Ä¹Ì¶ï¿½ï¿½ß¶ï¿½
+    public float undergroundLevelY = -9.5f;  // ï¿½ï¿½ SetUnderground(true) Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Yï¿½ï¿½Ä¹Ì¶ï¿½ï¿½ß¶ï¿½
 
-    [Header("Underground Settings")] // ĞÂÔö»òÕÒµ½ºÏÊÊÇøÓòÌí¼Ó
-    public float undergroundThreshold = 0f; // <--- ÔÚÕâÀïÌí¼ÓÕâĞĞ¶¨Òå
+    [Header("Underground Settings")] // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float undergroundThreshold = 0f; // <--- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½
 
     [Header("Follow Speed")]
-    public float horizontalFollowSpeed = 5f; // Ë®Æ½¸úËæµÄÆ½»¬ËÙ¶È
-    public float verticalFollowSpeed = 3f;   // ´¹Ö±¸úËæµÄÆ½»¬ËÙ¶È
+    public float horizontalFollowSpeed = 5f; // Ë®Æ½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½ï¿½Ù¶ï¿½
+    public float verticalFollowSpeed = 3f;   // ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½ï¿½Ù¶ï¿½
 
     private Vector3 _currentTargetPosition;
     private Vector3 _currentVelocity;
@@ -46,11 +46,11 @@ public class SideScrollingCamera : MonoBehaviour
     {
         if (trackedObject == null) return;
 
-        // 1. ¼ÆËãÄ¿±êXÎ»ÖÃ
+        // 1. ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½XÎ»ï¿½ï¿½
         float targetX = Mathf.Max(transform.position.x, trackedObject.position.x + xLookAhead);
 
-        // 2. ¼ÆËãÄ¿±êYÎ»ÖÃ (¸úËæÍæ¼ÒYÖá£¬²¢¼ÓÉÏÆ«ÒÆºÍÇ°Õ°)
-        // Rigidbody2DµÄ¼ì²éÊÇÎªÁË±ÜÃâÔÚÃ»ÓĞRigidbody2DÊ±³ö´í
+        // 2. ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½YÎ»ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Yï¿½á£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½Æºï¿½Ç°Õ°)
+        // Rigidbody2Dï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Îªï¿½Ë±ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Rigidbody2DÊ±ï¿½ï¿½ï¿½ï¿½
         float playerVerticalVelocityEffect = 0f;
         Rigidbody2D playerRb = trackedObject.GetComponent<Rigidbody2D>();
         if (playerRb != null)
@@ -63,11 +63,11 @@ public class SideScrollingCamera : MonoBehaviour
         _currentTargetPosition.y = targetY;
         _currentTargetPosition.z = transform.position.z;
 
-        // Æ½»¬ÒÆ¶¯Ïà»ú
+        // Æ½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½
         Vector3 smoothedPosition = transform.position;
-        // Ê¹ÓÃ 1f / speed ×÷Îª×èÄáÊ±¼ä¸üÖ±¹Û£¬speedÖµÔ½´ó£¬×èÄáÊ±¼äÔ½Ğ¡£¬Ïà»úÒÆ¶¯Ô½¿ì
-        // Èç¹û speed ÖµºÜĞ¡£¨±ÈÈçĞ¡ÓÚ1£©£¬×èÄáÊ±¼ä»á±ä´ó£¬Ïà»úÒÆ¶¯»á¸üÂı¡¢¸üÆ½»¬
-        // È·±£ speed ²»Îª0
+        // Ê¹ï¿½ï¿½ 1f / speed ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ö±ï¿½Û£ï¿½speedÖµÔ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ô½Ğ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½Ô½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ speed Öµï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½
+        // È·ï¿½ï¿½ speed ï¿½ï¿½Îª0
         float hDampTime = (horizontalFollowSpeed > 0.01f) ? 1f / horizontalFollowSpeed : 0.01f;
         float vDampTime = (verticalFollowSpeed > 0.01f) ? 1f / verticalFollowSpeed : 0.01f;
 
@@ -81,10 +81,10 @@ public class SideScrollingCamera : MonoBehaviour
     {
         Vector3 cameraPosition = transform.position;
         cameraPosition.y = isUnderground ? undergroundLevelY : normalLevelY;
-        transform.position = cameraPosition; // Á¢¼´ÉèÖÃYÖá
+        transform.position = cameraPosition; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Yï¿½ï¿½
 
-        _currentTargetPosition.y = cameraPosition.y; // ¸üĞÂÆ½»¬Ä¿±ê
-        _currentVelocity.y = 0f; // ÖØÖÃ´¹Ö±ËÙ¶È£¬±ÜÃâÆæ¹ÖµÄÆ½»¬¹ßĞÔ
+        _currentTargetPosition.y = cameraPosition.y; // ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½Ä¿ï¿½ï¿½
+        _currentVelocity.y = 0f; // ï¿½ï¿½ï¿½Ã´ï¿½Ö±ï¿½Ù¶È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         Debug.Log("SetUnderground called. Camera Y set to: " + cameraPosition.y + (isUnderground ? " (Underground)" : " (Normal)"));
     }

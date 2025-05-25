@@ -243,8 +243,6 @@ MonoBehaviour:
   livesText: {fileID: 1147215135}
   coinsText: {fileID: 1258576285}
   pauseMenuPanel: {fileID: 709159391}
-  mainMenuSceneName: Main Menu Scene
-  levelSelectSceneName: Level Select Scene
 --- !u!1001 &11685702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2618,7 +2616,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2634,22 +2632,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a59700ceb926ca24fbc26b469f3dcda5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackedObject: {fileID: 168128582}
-  height: 6.5
-  undergroundHeight: -9.5
-  undergroundThreshold: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2716,6 +2698,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59700ceb926ca24fbc26b469f3dcda5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedObject: {fileID: 168128582}
+  yOffset: 2
+  xLookAhead: 2
+  yLookAhead: 1
+  normalLevelY: 6.5
+  undergroundLevelY: -9.5
+  undergroundThreshold: 0
+  horizontalFollowSpeed: 5
+  verticalFollowSpeed: 3
 --- !u!4 &528024618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8001586471835426880, guid: 306b9c46b6601514e90d9cb6653bdb63, type: 3}
@@ -13960,6 +13963,10 @@ PrefabInstance:
       propertyPath: castle
       value: 
       objectReference: {fileID: 1768761168}
+    - target: {fileID: 2938452933781992828, guid: 0321727fc4f2a09458753c8f9f0ac24d, type: 3}
+      propertyPath: nextStage
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
